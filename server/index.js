@@ -2,6 +2,7 @@ let express = require('express');
 let path = require('path');
 let mongo = require('./mongo');
 let config = require('./config');
+let socket = require('./socket');
 
 
 var bodyParser = require('body-parser');
