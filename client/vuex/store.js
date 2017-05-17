@@ -7,6 +7,7 @@ export default new Vuex.Store({
         wordEntries: [],
         newWordEntry: {word: "", username: "", comment: ""},
         selectedWordEntry: {},
+        connect: false
     },
     mutations: {
         SET_WORD_ENTRIES(state, wordEntries) {
@@ -26,6 +27,12 @@ export default new Vuex.Store({
         },
         CLEAR_NEW_WORD_ENTRY(state){
             state.newWordEntry = {word: "", username: "", comment: ""};
+        }
+        
+        /* Сокеты */
+
+        SOCKET_CONNECT: (state,  status ) => {
+            state.connect = true;
         }
     },
     actions: {
@@ -54,6 +61,12 @@ export default new Vuex.Store({
         },
         clearNewWordEntry({commit}){
             commit('CLEAR_NEW_WORD_ENTRY');
+        }
+
+            /* Сокеты */
+
+        socket_newWord({commit, state}, message){
+            commit('ADD_WORD_ENTRY', message.message);
         }
     },
     getters: {
