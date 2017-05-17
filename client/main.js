@@ -12,7 +12,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue);
 Vue.use(VueResource);
-
+Vue.use(VueSocketio, 'http://localhost:3000', store);
 
 new Vue({
     el: 'app',
