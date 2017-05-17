@@ -2,10 +2,23 @@
     <b-card>
         <b-list-group>
             <b-list-group-item
-                    v-for="wordEntry in wordsEntries" :key=""
+                    v-for="(wordEntry, wordIndex) in wordsEntries" :key=""
                     v-on:click.native="onSelect(wordEntry)"
                     to="#">
-                {{ wordEntry.word }}
+                <span v-for="(letter, index) in wordEntry.word">
+                    <span v-if="index == 0"
+                          v-bind:style="{ color: colors[(wordIndex + 1) % colors.length]}">
+                        {{ letter }}
+                    </span>
+                    <span v-if="index == wordEntry.word.length - 1"
+                          v-bind:style="{ color: colors[wordIndex % colors.length]}">
+                        {{ letter }}
+                    </span>
+                    <span v-if="index != 0 && index != wordEntry.word.length - 1">
+                        {{letter}}
+
+                    </span>
+                </span>
             </b-list-group-item>
         </b-list-group>
     </b-card>
@@ -15,10 +28,16 @@
     export default {
         data: function () {
             return {
+            colors: [
+                    "#000000",
+                    "#00d800",
+                    "#c10000",
+                ]
             }
         },
         methods: {
             onSelect(wordEntry) {
+             //this.$socket.emit('new word', wordEntry);
                 this.$store.dispatch("selectWordEntry", wordEntry);
             }
         },
