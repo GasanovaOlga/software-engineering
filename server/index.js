@@ -18,6 +18,9 @@ app.use(express.static(__dirname + '/../dist'));
 function start() {
     app.listen(8080, 'localhost');
     console.log('Listening on port ' + 8080 + '...');
+    let smt  = require('./users_room/users_room');
+    console.log(smt);
+    smt.init();
 }
 
 let apiRouter = express.Router();
